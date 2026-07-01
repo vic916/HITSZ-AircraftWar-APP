@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AircraftWar</string>
+    <string name="MediumGame">普通模式</string>
+    <string name="EasyGame">简单模式</string>
+    <string name="HardGame">困难模式</string>
+    <string name="music">音效总开关</string>
+    <string name="login_user_hint">请输入账号 ID</string>
+    <string name="login_password_hint">请输入登录密码</string>
+    <string name="register_user_hint">设置账号 ID</string>
+    <string name="register_password_hint">设置登录密码</string>
+    <string name="register_confirm_hint">再次输入密码</string>
+</resources>

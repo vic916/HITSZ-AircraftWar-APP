@@ -1,0 +1,53 @@
+package edu.hitsz.aircraft;
+
+import edu.hitsz.factory.BloodPropFactory;
+import edu.hitsz.factory.BombPropFactory;
+import edu.hitsz.factory.BulletPropFactory;
+import edu.hitsz.factory.BulletPlusPropFactory;
+import edu.hitsz.factory.PropFactory;
+import edu.hitsz.game.Game;
+import edu.hitsz.prop.AbstractProp;
+import edu.hitsz.strategy.TrackingShootStrategy;
+
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * 精英Pro敌机
+ * 追踪射击，可掉落道具
+ */
+public class EliteProEnemy extends AbstractEnemyAircraft {
+
+    public EliteProEnemy(int locationX, int locationY, double speedX, double speedY, int hp) {
+        super(locationX, locationY, speedX, speedY, hp);
+        this.direction = 1;
+        this.power = 10;
+        this.shootNum = 2;
+        setStrategy(new TrackingShootStrategy());
+    }
+
+    @Override
+    public List<AbstractProp> dropProps() {
+        List<AbstractProp> res = new LinkedList<>();
+        PropFactory propFactory;
+        int flag = (int) (Game.sharedRandom.nextDouble() * 5);
+        switch (flag) {
+            case 0:
+                propFactory = new BloodPropFactory();
+                break;
+            case 1:
+                propFactory = new BombPropFactory();
+                break;
+            case 2:
+                propFactory = new BulletPropFactory();
+                break;
+            case 3:
+                propFactory = new BulletPlusPropFactory();
+                break;
+            default:
+                return res;
+        }
+        res.add(propFactory.createProp(this.locationX, this.locationY));
+        return res;
+    }
+}
